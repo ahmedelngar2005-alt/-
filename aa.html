@@ -1,0 +1,1429 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حلويات السعادة الفاخرة | متجر شرقي وغربي متكامل</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Cairo & Tajawal -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        luxury: {
+                            50: '#fdf8f5',
+                            100: '#fbece5',
+                            200: '#f7d5c5',
+                            300: '#eeaf98',
+                            400: '#e28065',
+                            500: '#d55a3c',
+                            600: '#be4327',
+                            700: '#9e341c',
+                            800: '#832c1b',
+                            900: '#6d281a',
+                            gold: '#D4AF37',
+                            goldHover: '#C59B27',
+                            goldLight: '#FFF8DC',
+                            brownDark: '#2C1810',
+                            brownWarm: '#422419',
+                            cream: '#FFF9F3',
+                            roseGold: '#C87D87'
+                        }
+                    },
+                    fontFamily: {
+                        cairo: ['Cairo', 'sans-serif'],
+                    },
+                    keyframes: {
+                        pulseGlow: {
+                            '0%, 100%': { transform: 'scale(1)', opacity: '1' },
+                            '50%': { transform: 'scale(1.05)', opacity: '0.9' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-8px)' },
+                        }
+                    },
+                    animation: {
+                        'pulse-glow': 'pulseGlow 3s infinite ease-in-out',
+                        'float': 'float 4s infinite ease-in-out'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #fdf8f5;
+            color: #2C1810;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #fbece5;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #e28065;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #d55a3c;
+        }
+        .hero-pattern {
+            background-color: #2C1810;
+            background-image: radial-gradient(#D4AF37 0.8px, transparent 0.8px), radial-gradient(#D4AF37 0.8px, #2C1810 0.8px);
+            background-size: 28px 28px;
+            background-position: 0 0, 14px 14px;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(10px);
+        }
+    </style>
+</head>
+<body class="bg-luxury-50 font-cairo antialiased selection:bg-luxury-300 selection:text-luxury-900">
+
+    <!-- Notification Toast -->
+    <div id="toast" class="fixed bottom-5 left-5 z-50 transform translate-y-24 opacity-0 transition-all duration-300 bg-luxury-brownDark text-white px-6 py-4 rounded-2xl shadow-2xl flex items-center gap-3 border-2 border-luxury-gold">
+        <i id="toast-icon" class="fas fa-check-circle text-luxury-gold text-2xl"></i>
+        <span id="toast-message" class="font-bold text-sm sm:text-base">تمت الإضافة بنجاح!</span>
+    </div>
+
+    <!-- Announcement Header Bar -->
+    <div class="bg-luxury-brownDark text-luxury-goldLight text-xs sm:text-sm py-2 px-4 text-center font-bold tracking-wide flex justify-center items-center gap-4 border-b border-luxury-gold/30">
+        <span><i class="fas fa-truck-fast ml-2 text-luxury-gold"></i> توصيل سريع لجميع المناطق | مجاني للطلبات فوق 350 ج.م</span>
+        <span class="hidden md:inline">|</span>
+        <span class="hidden md:inline"><i class="fas fa-ticket-alt ml-2 text-luxury-gold"></i> خصم 15% كود: <strong class="text-white underline tracking-wider">SWEET15</strong></span>
+    </div>
+
+    <!-- Navigation Bar -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md shadow-md border-b border-luxury-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#home" class="flex items-center gap-3 group">
+                <div class="w-12 h-12 rounded-2xl bg-luxury-brownDark flex items-center justify-center text-luxury-gold shadow-lg border-2 border-luxury-gold group-hover:rotate-6 transition duration-300">
+                    <i class="fas fa-birthday-cake text-2xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl sm:text-2xl font-black text-luxury-brownDark tracking-tight">حلويات السعادة</h1>
+                    <p class="text-[11px] text-luxury-roseGold font-bold">أجود أنواع الحلويات الشرقية والغربية</p>
+                </div>
+            </a>
+
+            <!-- Desktop Links -->
+            <nav class="hidden lg:flex items-center gap-7 font-bold text-luxury-brownWarm text-sm">
+                <a href="#home" class="hover:text-luxury-500 transition">الرئيسية</a>
+                <a href="#products" class="hover:text-luxury-500 transition">قائمة الحلويات (28)</a>
+                <a href="#box-builder" class="hover:text-luxury-500 transition text-luxury-600 flex items-center gap-1">
+                    <i class="fas fa-box-open text-luxury-gold"></i> مصمم البوكس
+                </a>
+                <a href="#party-calculator" class="hover:text-luxury-500 transition">حاسبة العزومات</a>
+                <a href="#offers" class="hover:text-luxury-500 transition">العروض الهاربة</a>
+                <a href="#about" class="hover:text-luxury-500 transition">من نحن</a>
+            </nav>
+
+            <!-- Interactive Action Icons -->
+            <div class="flex items-center gap-3">
+                <!-- Wishlist -->
+                <button onclick="toggleWishlistModal()" class="relative p-3 rounded-xl bg-luxury-100 hover:bg-luxury-200 text-luxury-700 transition" title="المفضلة">
+                    <i class="far fa-heart text-xl"></i>
+                    <span id="wishlist-badge" class="absolute -top-1 -right-1 bg-luxury-roseGold text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-black hidden">0</span>
+                </button>
+
+                <!-- Shopping Cart -->
+                <button onclick="toggleCartModal()" class="relative p-3 rounded-xl bg-luxury-brownDark hover:bg-luxury-brownWarm text-luxury-gold transition shadow-md flex items-center gap-2 px-4 border border-luxury-gold/40">
+                    <i class="fas fa-shopping-bag text-lg"></i>
+                    <span class="hidden sm:inline font-bold text-sm">السلة</span>
+                    <span id="cart-badge" class="absolute -top-1 -right-1 bg-luxury-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-black">0</span>
+                </button>
+
+                <!-- Mobile Menu Button -->
+                <button onclick="toggleMobileMenu()" class="lg:hidden p-2.5 rounded-xl text-luxury-brownDark hover:bg-luxury-100">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Drawer -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-luxury-200 px-6 py-4 space-y-3 shadow-2xl">
+            <a href="#home" onclick="toggleMobileMenu()" class="block py-2 font-bold text-luxury-brownDark border-b border-gray-100"><i class="fas fa-home ml-2 text-luxury-gold"></i> الرئيسية</a>
+            <a href="#products" onclick="toggleMobileMenu()" class="block py-2 font-bold text-luxury-brownDark border-b border-gray-100"><i class="fas fa-utensils ml-2 text-luxury-gold"></i> قائمة المنتجات (28 صنف)</a>
+            <a href="#box-builder" onclick="toggleMobileMenu()" class="block py-2 font-bold text-luxury-600 border-b border-gray-100"><i class="fas fa-box-open ml-2 text-luxury-gold"></i> مصمم بوكس المشكل</a>
+            <a href="#party-calculator" onclick="toggleMobileMenu()" class="block py-2 font-bold text-luxury-brownDark border-b border-gray-100"><i class="fas fa-calculator ml-2 text-luxury-gold"></i> حاسبة العزومات والمناسبات</a>
+            <a href="#offers" onclick="toggleMobileMenu()" class="block py-2 font-bold text-luxury-brownDark border-b border-gray-100"><i class="fas fa-percentage ml-2 text-luxury-gold"></i> العروض والخصومات</a>
+            <a href="#about" onclick="toggleMobileMenu()" class="block py-2 font-bold text-luxury-brownDark"><i class="fas fa-info-circle ml-2 text-luxury-gold"></i> قصة المتجر</a>
+        </div>
+    </header>
+
+    <!-- Hero Showcase Section -->
+    <section id="home" class="hero-pattern py-16 sm:py-24 text-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="space-y-6 text-center lg:text-right">
+                <span class="inline-flex items-center gap-2 bg-luxury-gold/20 text-luxury-gold px-4 py-2 rounded-full text-xs sm:text-sm font-extrabold border border-luxury-gold/40 animate-pulse">
+                    <i class="fas fa-crown"></i> متجر الحلويات الفاخر الأول لعام 2026
+                </span>
+                <h1 class="text-4xl sm:text-6xl font-black leading-tight">
+                    أصل <span class="text-luxury-gold">البسبوسة والجاتوه</span> والكنافة الفاخرة
+                </h1>
+                <p class="text-gray-300 text-base sm:text-lg leading-relaxed max-w-xl mx-auto lg:mx-0">
+                    أعدت بكل عشق باستخدام أحسن أنواع السمن البلدي الطبيعي والشوكولاتة البلجيكية المستوردة والمكسرات الطازجة. تذوق الأصالة والروعة في كل قضمة.
+                </p>
+                <div class="flex flex-wrap justify-center lg:justify-start gap-4 pt-4">
+                    <a href="#products" class="bg-luxury-gold hover:bg-yellow-500 text-luxury-brownDark font-black px-8 py-4 rounded-2xl shadow-2xl transition transform hover:-translate-y-1 flex items-center gap-3">
+                        <i class="fas fa-cookie-bite"></i> تصفح 28 صنفاً الآن
+                    </a>
+                    <a href="#box-builder" class="bg-white/10 hover:bg-white/20 text-white font-bold px-8 py-4 rounded-2xl border border-white/20 transition backdrop-blur-sm flex items-center gap-3">
+                        <i class="fas fa-cubes text-luxury-gold"></i> صمم بوكسك الخاص
+                    </a>
+                </div>
+                <div class="pt-8 flex items-center justify-center lg:justify-start gap-8 border-t border-white/10 text-xs sm:text-sm text-gray-300">
+                    <div><strong class="text-luxury-gold block text-2xl font-black">28+</strong> أصناف متنوعة</div>
+                    <div><strong class="text-luxury-gold block text-2xl font-black">100%</strong> سمن بلدي صافي</div>
+                    <div><strong class="text-luxury-gold block text-2xl font-black">4.9★</strong> تقييم الآلاف</div>
+                </div>
+            </div>
+            <div class="relative flex justify-center">
+                <div class="absolute -inset-4 bg-luxury-gold/20 rounded-full blur-3xl animate-pulse"></div>
+                <div class="relative w-80 sm:w-[420px] h-80 sm:h-[420px] rounded-3xl overflow-hidden border-4 border-luxury-gold/60 shadow-2xl animate-float">
+                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&q=80&w=800" alt="حلويات فاخرة" class="w-full h-full object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Products Catalog -->
+    <section id="products" class="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-12 space-y-3">
+            <span class="text-luxury-roseGold font-black tracking-widest text-xs uppercase bg-luxury-100 px-4 py-1.5 rounded-full">تشكيلة السعادة</span>
+            <h2 class="text-3xl sm:text-5xl font-black text-luxury-brownDark">قائمة الحلويات الفاخرة (28 صنف)</h2>
+            <p class="text-gray-600 text-sm sm:text-base">استكشف البسبوسة، الكنافة، الجاتوه الفرنسية، التورت، والنواعم المصنوعة يومياً بكل حب.</p>
+        </div>
+
+        <!-- Filter, Search & Controls Container -->
+        <div class="bg-white p-6 sm:p-8 rounded-3xl shadow-xl border border-luxury-200 mb-12 space-y-6">
+            <!-- Search Field -->
+            <div class="relative">
+                <span class="absolute inset-y-0 right-0 pr-5 flex items-center pointer-events-none text-luxury-400">
+                    <i class="fas fa-search text-lg"></i>
+                </span>
+                <input type="text" id="search-input" oninput="filterAndRenderProducts()" placeholder="ابحث باسم الحلوى (مثال: بسبوسة، كنافة، جاتوه، ريد فيلفيت، تورتة)..." class="w-full pr-14 pl-4 py-4 bg-luxury-50 rounded-2xl border-2 border-luxury-200 focus:outline-none focus:border-luxury-500 focus:bg-white transition text-sm sm:text-base font-semibold">
+            </div>
+
+            <!-- Categories Tabs & Sorting -->
+            <div class="flex flex-col lg:flex-row justify-between items-center gap-6">
+                <!-- Categories -->
+                <div id="category-filters" class="flex flex-wrap gap-2 w-full lg:w-auto">
+                    <button onclick="setCategory('all')" class="cat-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-black bg-luxury-brownDark text-luxury-gold shadow-md transition">الكل (28)</button>
+                    <button onclick="setCategory('شرقي')" class="cat-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-luxury-100 hover:bg-luxury-200 text-luxury-brownDark transition">حلويات شرقية</button>
+                    <button onclick="setCategory('كنافة وبسبوسة')" class="cat-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-luxury-100 hover:bg-luxury-200 text-luxury-brownDark transition">كنافة وبسبوسة</button>
+                    <button onclick="setCategory('جاتوه وتورت')" class="cat-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-luxury-100 hover:bg-luxury-200 text-luxury-brownDark transition">جاتوه وتورتات</button>
+                    <button onclick="setCategory('غربي')" class="cat-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-luxury-100 hover:bg-luxury-200 text-luxury-brownDark transition">حلويات غربية</button>
+                    <button onclick="setCategory('نواعم')" class="cat-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-luxury-100 hover:bg-luxury-200 text-luxury-brownDark transition">نواعم وكحك</button>
+                    <button onclick="setCategory('دايت')" class="cat-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-luxury-100 hover:bg-luxury-200 text-luxury-brownDark transition">دايت / لايت 🍃</button>
+                </div>
+
+                <!-- Sorting -->
+                <div class="flex items-center gap-3 w-full lg:w-auto justify-end border-t lg:border-t-0 pt-4 lg:pt-0 border-gray-100">
+                    <span class="text-xs sm:text-sm font-bold text-gray-500 whitespace-nowrap"><i class="fas fa-sort-amount-down ml-1 text-luxury-gold"></i> ترتيب:</span>
+                    <select id="sort-select" onchange="filterAndRenderProducts()" class="bg-luxury-50 border-2 border-luxury-200 rounded-xl px-4 py-2.5 text-xs sm:text-sm font-bold text-luxury-brownDark focus:outline-none focus:border-luxury-500">
+                        <option value="default">الافتراضي (الأكثر مبيعاً)</option>
+                        <option value="price-asc">السعر: من الأقل للأعلى</option>
+                        <option value="price-desc">السعر: من الأعلى للأقل</option>
+                        <option value="rating">التقييم: الأعلى تقييماً</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Products Display Grid -->
+        <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+            <!-- Rendered dynamically -->
+        </div>
+
+        <!-- Empty State Filter -->
+        <div id="empty-state" class="hidden text-center py-20 space-y-4">
+            <div class="w-20 h-20 bg-luxury-100 text-luxury-500 rounded-3xl flex items-center justify-center mx-auto text-3xl">
+                <i class="fas fa-search-minus"></i>
+            </div>
+            <h3 class="text-2xl font-black text-luxury-brownDark">لم نجد أصناف متطابقة مع البحث</h3>
+            <p class="text-gray-500 text-sm">جرب البحث باسم صنف آخر أو اختر قسم مختلف من الأقسام بالأعلى.</p>
+            <button onclick="resetFilters()" class="px-6 py-3 bg-luxury-brownDark text-luxury-gold font-bold rounded-xl shadow-md hover:bg-luxury-brownWarm transition">إعادة عرض كل الحلويات</button>
+        </div>
+    </section>
+
+    <!-- Custom Box Builder Tool Section -->
+    <section id="box-builder" class="bg-gradient-to-br from-luxury-brownDark via-luxury-brownWarm to-luxury-brownDark text-white py-16 sm:py-24 my-12 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-12">
+            <div class="text-center max-w-3xl mx-auto space-y-3">
+                <span class="bg-luxury-gold/20 text-luxury-gold px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-wider border border-luxury-gold/30">أداة تفاعلية حصرياً</span>
+                <h2 class="text-3xl sm:text-5xl font-black">مصمم بوكس المشكل الفاخر 🎁</h2>
+                <p class="text-gray-300 text-sm sm:text-base">اختر وزن البوكس وشكل أصنافك الشرقية والغربية المفضلة على ذوقك مع احتساب تلقائي للطلب!</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+                <!-- Weight Selection & Item Pickers -->
+                <div class="lg:col-span-2 bg-white/10 backdrop-blur-md p-6 sm:p-8 rounded-3xl border border-luxury-gold/30 space-y-6">
+                    <h3 class="text-xl font-bold text-luxury-gold border-b border-white/10 pb-3 flex items-center gap-2">
+                        <i class="fas fa-balance-scale"></i> 1. اختر وزن البوكس:
+                    </h3>
+                    <div class="grid grid-cols-3 gap-4">
+                        <button onclick="setBoxWeight(1)" id="btn-weight-1" class="weight-btn p-4 rounded-2xl bg-luxury-gold text-luxury-brownDark font-black text-center shadow border-2 border-luxury-gold transition">1 كيلو جرام</button>
+                        <button onclick="setBoxWeight(1.5)" id="btn-weight-1.5" class="weight-btn p-4 rounded-2xl bg-white/10 text-white font-bold text-center border-2 border-white/20 hover:border-luxury-gold transition">1.5 كيلو جرام</button>
+                        <button onclick="setBoxWeight(2)" id="btn-weight-2" class="weight-btn p-4 rounded-2xl bg-white/10 text-white font-bold text-center border-2 border-white/20 hover:border-luxury-gold transition">2 كيلو جرام</button>
+                    </div>
+
+                    <h3 class="text-xl font-bold text-luxury-gold border-b border-white/10 pb-3 flex items-center gap-2 pt-4">
+                        <i class="fas fa-hand-pointer"></i> 2. اختر الأصناف لإضافتها للبوكس:
+                    </h3>
+                    <div id="box-pickers" class="grid grid-cols-2 sm:grid-cols-3 gap-3 max-h-80 overflow-y-auto pr-2">
+                        <!-- Populated via JS -->
+                    </div>
+                </div>
+
+                <!-- Box Summary Card -->
+                <div class="bg-white text-luxury-brownDark p-6 sm:p-8 rounded-3xl shadow-2xl border-2 border-luxury-gold space-y-6">
+                    <div class="flex items-center justify-between border-b border-gray-200 pb-4">
+                        <h3 class="text-xl font-black flex items-center gap-2">
+                            <i class="fas fa-gift text-luxury-600"></i> محتويات بوكسك
+                        </h3>
+                        <span id="box-weight-label" class="bg-luxury-100 text-luxury-700 px-3 py-1 rounded-full text-xs font-black">1 كجم</span>
+                    </div>
+
+                    <div id="box-selected-list" class="space-y-3 min-h-[140px] max-h-60 overflow-y-auto text-sm">
+                        <p class="text-gray-400 text-center py-8 font-semibold">لم تقم بإضافة أصناف بعد، انقر على الأصناف لإضافتها للبوكس.</p>
+                    </div>
+
+                    <div class="space-y-2 border-t border-gray-200 pt-4 text-sm">
+                        <div class="flex justify-between font-bold">
+                            <span>السعر التقديري:</span>
+                            <span id="box-calculated-price" class="text-2xl font-black text-luxury-600">0 ج.م</span>
+                        </div>
+                        <p class="text-xs text-gray-500">يشمل التغليف الفاخر + إمكانية إرفاق كارت إهداء مجاناً.</p>
+                    </div>
+
+                    <button onclick="addCustomBoxToCart()" class="w-full py-4 bg-luxury-gold hover:bg-yellow-400 text-luxury-brownDark font-black text-base rounded-2xl shadow-xl transition flex items-center justify-center gap-2">
+                        <i class="fas fa-cart-plus"></i> اعتماد وإضافة البوكس للسلة
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Event & Party Calculator Feature -->
+    <section id="party-calculator" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-3xl p-8 sm:p-12 shadow-xl border border-luxury-200 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+            <div class="space-y-5">
+                <span class="bg-luxury-roseGold/10 text-luxury-roseGold px-4 py-1.5 rounded-full text-xs font-black uppercase">ذكي ومفيد</span>
+                <h2 class="text-3xl sm:text-4xl font-black text-luxury-brownDark">حاسبة عزومات ومناسبات الحلويات 🎉</h2>
+                <p class="text-gray-600 leading-relaxed text-sm sm:text-base">
+                    متحار تطلب كميات قد إيه لضيوفك؟ أدخل عدد الحضور في العزومة أو المناسبة وسنحسب لك الكمية الكافية بالأوزان والتنوع الأنسب لضمان إكرام ضيوفك.
+                </p>
+
+                <div class="space-y-4 pt-2">
+                    <label class="block text-sm font-extrabold text-luxury-brownDark">عدد الأفراد أو الضيوف المتوقع:</label>
+                    <div class="flex items-center gap-4">
+                        <input type="range" id="guests-range" min="4" max="100" value="12" oninput="calculatePartySweet()" class="w-full accent-luxury-500">
+                        <span id="guests-count-display" class="bg-luxury-brownDark text-luxury-gold font-black text-xl px-4 py-2 rounded-xl min-w-[70px] text-center">12 فرد</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recommendation Display Card -->
+            <div id="party-recommendation" class="bg-luxury-50 p-6 sm:p-8 rounded-3xl border-2 border-luxury-200 space-y-4">
+                <h3 class="text-lg font-black text-luxury-brownDark flex items-center gap-2">
+                    <i class="fas fa-magic text-luxury-gold"></i> التوصية المقترحة لمناسبتك:
+                </h3>
+                <div class="space-y-3 text-sm">
+                    <div class="flex justify-between p-3 bg-white rounded-xl shadow-sm font-bold">
+                        <span>الوزن الإجمالي الموصى به:</span>
+                        <span id="rec-weight" class="text-luxury-600 font-black">2.5 كيلو مشكل</span>
+                    </div>
+                    <div class="flex justify-between p-3 bg-white rounded-xl shadow-sm font-bold">
+                        <span>التشكيلة المقترحة:</span>
+                        <span id="rec-mix" class="text-gray-700">كيلو بسبوسة + كيلو كنافة + 12 قطعة جاتوه</span>
+                    </div>
+                    <div class="flex justify-between p-3 bg-white rounded-xl shadow-sm font-bold">
+                        <span>التكلفة التقديرية:</span>
+                        <span id="rec-cost" class="text-luxury-600 font-black">420 ج.م</span>
+                    </div>
+                </div>
+                <button onclick="addPartyRecommendationToCart()" class="w-full py-3.5 bg-luxury-brownDark text-luxury-gold hover:bg-luxury-brownWarm font-bold text-sm rounded-xl transition shadow flex items-center justify-center gap-2">
+                    <i class="fas fa-plus-circle"></i> أضف التوصية بالكامل للسلة
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Weekly Offers & Flash Sales -->
+    <section id="offers" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="text-center max-w-2xl mx-auto mb-12 space-y-3">
+            <span class="text-luxury-500 font-black tracking-widest text-xs uppercase bg-luxury-100 px-4 py-1.5 rounded-full">خصومات العيد والمناسبات</span>
+            <h2 class="text-3xl sm:text-4xl font-black text-luxury-brownDark">عروض وتوفير الأسبوع 🔥</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Offer Card 1 -->
+            <div class="bg-white rounded-3xl p-6 shadow-xl border border-luxury-200 relative overflow-hidden flex flex-col justify-between group hover:-translate-y-2 transition duration-300">
+                <div class="absolute top-4 left-4 bg-luxury-600 text-white text-xs px-3 py-1 rounded-full font-black shadow">خصم 25%</div>
+                <div class="space-y-4">
+                    <div class="h-48 rounded-2xl overflow-hidden">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsvQcgbp92feEjNJ0IgaHCGsWCEHnwDuk_6XfWRQGJ6aFRCeukZLZKAxo&s=10" alt="عرض الشرقيات" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    </div>
+                    <h3 class="text-xl font-bold text-luxury-brownDark">باقة الشرقيات الملكية</h3>
+                    <p class="text-gray-600 text-xs leading-relaxed">كيلو بسبوسة بالمكسرات + كيلو كنافة بالقشطة + نصف كيلو رموش الست وهريسة.</p>
+                </div>
+                <div class="pt-6 mt-6 border-t border-gray-100 flex items-center justify-between">
+                    <div>
+                        <span class="text-xs text-gray-400 line-through block">440 ج.م</span>
+                        <span class="text-2xl font-black text-luxury-600">330 ج.م</span>
+                    </div>
+                    <button onclick="addOfferBundle('باقة الشرقيات الملكية', 330, 'https:encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsvQcgbp92feEjNJ0IgaHCGsWCEHnwDuk_6XfWRQGJ6aFRCeukZLZKAxo&s=10')" class="px-5 py-2.5 bg-luxury-brownDark hover:bg-luxury-brownWarm text-luxury-gold font-bold text-sm rounded-xl transition">أضف العرض</button>
+                </div>
+            </div>
+
+            <!-- Offer Card 2 -->
+            <div class="bg-white rounded-3xl p-6 shadow-xl border border-luxury-200 relative overflow-hidden flex flex-col justify-between group hover:-translate-y-2 transition duration-300">
+                <div class="absolute top-4 left-4 bg-luxury-gold text-luxury-brownDark text-xs px-3 py-1 rounded-full font-black shadow">الأكثر مبيعاً ⭐</div>
+                <div class="space-y-4">
+                    <div class="h-48 rounded-2xl overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&q=80&w=600" alt="عرض الجاتوه والتورت" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    </div>
+                    <h3 class="text-xl font-bold text-luxury-brownDark">عرض ميكس الجاتوه والتورتة</h3>
+                    <p class="text-gray-600 text-xs leading-relaxed">تورتة فاكهة وشوكولاتة مقاس 22 + 6 قطع جاتوه فرنسي مشكل.</p>
+                </div>
+                <div class="pt-6 mt-6 border-t border-gray-100 flex items-center justify-between">
+                    <div>
+                        <span class="text-xs text-gray-400 line-through block">520 ج.م</span>
+                        <span class="text-2xl font-black text-luxury-600">399 ج.م</span>
+                    </div>
+                    <button onclick="addOfferBundle('عرض ميكس الجاتوه والتورتة', 399, 'https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&q=80&w=600')" class="px-5 py-2.5 bg-luxury-brownDark hover:bg-luxury-brownWarm text-luxury-gold font-bold text-sm rounded-xl transition">أضف العرض</button>
+                </div>
+            </div>
+
+            <!-- Offer Card 3 -->
+            <div class="bg-white rounded-3xl p-6 shadow-xl border border-luxury-200 relative overflow-hidden flex flex-col justify-between group hover:-translate-y-2 transition duration-300">
+                <div class="absolute top-4 left-4 bg-luxury-roseGold text-white text-xs px-3 py-1 rounded-full font-black shadow">توفير 30%</div>
+                <div class="space-y-4">
+                    <div class="h-48 rounded-2xl overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1517433670267-08bbd4be890f?auto=format&fit=crop&q=80&w=600" alt="عرض الكحك والنواعم" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    </div>
+                    <h3 class="text-xl font-bold text-luxury-brownDark">علبة نواعم العيد الشاملة</h3>
+                    <p class="text-gray-600 text-xs leading-relaxed">كيلو كحك ملبن + كيلو بيتي فور بالمكسرات + كيلو بسكويت النشادر الأصلي.</p>
+                </div>
+                <div class="pt-6 mt-6 border-t border-gray-100 flex items-center justify-between">
+                    <div>
+                        <span class="text-xs text-gray-400 line-through block">500 ج.م</span>
+                        <span class="text-2xl font-black text-luxury-600">350 ج.م</span>
+                    </div>
+                    <button onclick="addOfferBundle('علبة نواعم العيد الشاملة', 350, 'https://images.unsplash.com/photo-1517433670267-08bbd4be890f?auto=format&fit=crop&q=80&w=600')" class="px-5 py-2.5 bg-luxury-brownDark hover:bg-luxury-brownWarm text-luxury-gold font-bold text-sm rounded-xl transition">أضف العرض</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="bg-white py-16 my-12 border-y border-luxury-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <span class="text-luxury-roseGold font-bold tracking-widest text-xs uppercase bg-luxury-100 px-4 py-1.5 rounded-full">سر الصنعة والأصالة</span>
+                    <h2 class="text-3xl sm:text-4xl font-black text-luxury-brownDark">لماذا يفضل الآلاف حلويات السعادة؟</h2>
+                    <p class="text-gray-600 leading-relaxed text-sm sm:text-base">
+                        منذ أكثر من 15 عاماً، ونحن نلتزم بالمعايير الفاخرة للحلويات الشرقية والغربية. نقوم بإعداد البسبوسة والكنافة والجاتوه يومياً بفرننا الخاص، باستخدام سمن بلدي طبيعي 100% بدون أي زيوت مهدرجة أو مواد حافظة.
+                    </p>
+                    <div class="grid grid-cols-2 gap-6 pt-2">
+                        <div class="flex items-center gap-3 bg-luxury-50 p-4 rounded-2xl border border-luxury-200">
+                            <div class="w-12 h-12 bg-luxury-brownDark text-luxury-gold rounded-xl flex items-center justify-center text-xl font-bold">
+                                <i class="fas fa-leaf"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-luxury-brownDark text-sm">مكونات طازجة 100%</h4>
+                                <p class="text-xs text-gray-500">خبز يومي مستمر</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3 bg-luxury-50 p-4 rounded-2xl border border-luxury-200">
+                            <div class="w-12 h-12 bg-luxury-brownDark text-luxury-gold rounded-xl flex items-center justify-center text-xl font-bold">
+                                <i class="fas fa-award"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-luxury-brownDark text-sm">أعلى جودة ونظافة</h4>
+                                <p class="text-xs text-gray-500">معايير احترافية</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&q=80&w=500" alt="حلويات 1" class="rounded-3xl shadow-lg w-full h-56 object-cover">
+                    <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&q=80&w=500" alt="حلويات 2" class="rounded-3xl shadow-lg w-full h-56 object-cover mt-8">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="text-center max-w-2xl mx-auto mb-12 space-y-3">
+            <span class="text-luxury-roseGold font-bold tracking-widest text-xs uppercase bg-luxury-100 px-4 py-1.5 rounded-full">تقييمات وثقة</span>
+            <h2 class="text-3xl sm:text-4xl font-black text-luxury-brownDark">ماذا قال آلاف العملاء عنا؟ ⭐</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-white p-8 rounded-3xl shadow-lg border border-luxury-200 space-y-4">
+                <div class="text-luxury-gold text-base flex gap-1">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p class="text-gray-600 text-sm leading-relaxed">
+                    "البسبوسة بالقشطة والكنافة بالمانجو تحفة بجد! طازجة جداً والسمن البلدي ظاهرة في الطعم والتغليف شيك أوي."
+                </p>
+                <div class="flex items-center gap-4 pt-4 border-t border-gray-100">
+                    <div class="w-10 h-10 bg-luxury-brownDark text-luxury-gold rounded-full flex items-center justify-center font-bold text-sm">م.ح</div>
+                    <div>
+                        <h4 class="font-bold text-luxury-brownDark text-sm">محمد حسام</h4>
+                        <span class="text-xs text-gray-400">عميل متكرر</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-8 rounded-3xl shadow-lg border border-luxury-200 space-y-4">
+                <div class="text-luxury-gold text-base flex gap-1">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p class="text-gray-600 text-sm leading-relaxed">
+                    "طلبت تورتة عيد ميلاد وجاتوه ريد فيلفيت، الحساب كان مظبوط والضيوف كلهم انبهروا بالطعم والشكل! شكراً ليكم."
+                </p>
+                <div class="flex items-center gap-4 pt-4 border-t border-gray-100">
+                    <div class="w-10 h-10 bg-luxury-brownDark text-luxury-gold rounded-full flex items-center justify-center font-bold text-sm">س.أ</div>
+                    <div>
+                        <h4 class="font-bold text-luxury-brownDark text-sm">سارة أحمد</h4>
+                        <span class="text-xs text-gray-400">عميلة مميزة</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-8 rounded-3xl shadow-lg border border-luxury-200 space-y-4">
+                <div class="text-luxury-gold text-base flex gap-1">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p class="text-gray-600 text-sm leading-relaxed">
+                    "ميزة مصمم بوكس المشكل خطيرة! عملت بوكس مشكل بسبوسة مع كنافة وبقلاوة على ذوقي للبيت، فكرة عبقرية وموفرة."
+                </p>
+                <div class="flex items-center gap-4 pt-4 border-t border-gray-100">
+                    <div class="w-10 h-10 bg-luxury-brownDark text-luxury-gold rounded-full flex items-center justify-center font-bold text-sm">د.ع</div>
+                    <div>
+                        <h4 class="font-bold text-luxury-brownDark text-sm">د. علي الشريف</h4>
+                        <span class="text-xs text-gray-400">عميل دائم</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-luxury-brownDark text-gray-300 pt-16 pb-12 border-t-2 border-luxury-gold/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+            <div class="space-y-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-2xl bg-luxury-gold flex items-center justify-center text-luxury-brownDark font-bold">
+                        <i class="fas fa-birthday-cake text-xl"></i>
+                    </div>
+                    <h2 class="text-xl font-black text-white">حلويات السعادة</h2>
+                </div>
+                <p class="text-xs text-gray-400 leading-relaxed">
+                    المتجر الأول المتخصص في تقديم أشهى الحلويات الشرقية والغربية الفاخرة بجودة طازجة يومياً.
+                </p>
+            </div>
+
+            <div>
+                <h4 class="text-white font-bold text-base mb-4 border-b border-gray-700 pb-2">روابط سريعة</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="#home" class="hover:text-luxury-gold transition">الرئيسية</a></li>
+                    <li><a href="#products" class="hover:text-luxury-gold transition">قائمة الـ 28 منتج</a></li>
+                    <li><a href="#box-builder" class="hover:text-luxury-gold transition">أداة تصميم البوكس</a></li>
+                    <li><a href="#party-calculator" class="hover:text-luxury-gold transition">حاسبة العزومات</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-white font-bold text-base mb-4 border-b border-gray-700 pb-2">أقسام الحلويات</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="#products" onclick="setCategory('كنافة وبسبوسة')" class="hover:text-luxury-gold transition">قسم البسبوسة والكنافة</a></li>
+                    <li><a href="#products" onclick="setCategory('جاتوه وتورت')" class="hover:text-luxury-gold transition">قسم الجاتوه والتورتات</a></li>
+                    <li><a href="#products" onclick="setCategory('شرقي')" class="hover:text-luxury-gold transition">الحلويات الشرقية الفاخرة</a></li>
+                    <li><a href="#products" onclick="setCategory('دايت')" class="hover:text-luxury-gold transition">حلويات الدايت والدايت كير</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-white font-bold text-base mb-4 border-b border-gray-700 pb-2">تواصل معنا</h4>
+                <ul class="space-y-3 text-xs">
+                    <li class="flex items-center gap-3"><i class="fas fa-phone-alt text-luxury-gold"></i> 01001234567 / 01119876543</li>
+                    <li class="flex items-center gap-3"><i class="fas fa-map-marker-alt text-luxury-gold"></i> الفروع: القاهرة - الجيزة - الإسكندرية</li>
+                    <li class="flex items-center gap-3"><i class="fas fa-clock text-luxury-gold"></i> التوصيل يومياً من 9 ص حتى 1 صباحاً</li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 border-t border-gray-800 text-center text-xs text-gray-500">
+            جميع الحقوق محفوظة © 2026 متجر حلويات السعادة الفاخرة.
+        </div>
+    </footer>
+
+    <!-- Shopping Cart Modal -->
+    <div id="cart-modal" class="fixed inset-0 z-50 overflow-hidden hidden">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="toggleCartModal()"></div>
+        <div class="absolute inset-y-0 left-0 max-w-full flex pl-10">
+            <div class="w-screen max-w-md bg-white shadow-2xl flex flex-col justify-between">
+                <div class="p-6 bg-luxury-brownDark text-white flex items-center justify-between border-b border-luxury-gold/30">
+                    <div class="flex items-center gap-3">
+                        <i class="fas fa-shopping-bag text-luxury-gold text-xl"></i>
+                        <h3 class="text-lg font-bold">سلة مشترياتك</h3>
+                    </div>
+                    <button onclick="toggleCartModal()" class="text-gray-300 hover:text-white p-2">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+
+                <div id="cart-items" class="flex-1 overflow-y-auto p-6 space-y-4 divide-y divide-gray-100">
+                    <!-- Cart Dynamic Items -->
+                </div>
+
+                <div class="p-6 bg-luxury-50 border-t border-luxury-200 space-y-4">
+                    <div class="flex gap-2">
+                        <input type="text" id="promo-input" placeholder="كود الخصم (SWEET15)" class="flex-1 px-3 py-2 bg-white border border-luxury-200 rounded-xl text-xs sm:text-sm focus:outline-none">
+                        <button onclick="applyPromoCode()" class="px-4 py-2 bg-luxury-brownDark text-luxury-gold text-xs font-bold rounded-xl hover:bg-luxury-brownWarm transition">تطبيق</button>
+                    </div>
+
+                    <div class="space-y-1 text-xs sm:text-sm">
+                        <div class="flex justify-between text-gray-600">
+                            <span>المجموع الفرعي:</span>
+                            <span id="cart-subtotal" class="font-bold">0 ج.م</span>
+                        </div>
+                        <div id="discount-row" class="flex justify-between text-luxury-600 hidden">
+                            <span>الخصم المطبق:</span>
+                            <span id="cart-discount" class="font-bold">-0 ج.م</span>
+                        </div>
+                        <div class="flex justify-between text-gray-600">
+                            <span>رسوم التوصيل:</span>
+                            <span id="shipping-cost" class="font-bold">35 ج.م</span>
+                        </div>
+                        <div class="flex justify-between text-base sm:text-lg font-black text-luxury-brownDark pt-2 border-t border-luxury-200">
+                            <span>الإجمالي النهائي:</span>
+                            <span id="cart-total" class="text-luxury-600">0 ج.م</span>
+                        </div>
+                    </div>
+
+                    <button onclick="checkout()" class="w-full py-3.5 bg-luxury-gold hover:bg-yellow-400 text-luxury-brownDark font-black rounded-xl shadow-lg transition flex items-center justify-center gap-2 text-sm sm:text-base">
+                        <i class="fas fa-check-circle"></i> تأكيد وإرسال الطلب
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wishlist Modal -->
+    <div id="wishlist-modal" class="fixed inset-0 z-50 overflow-hidden hidden">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="toggleWishlistModal()"></div>
+        <div class="absolute inset-y-0 right-0 max-w-full flex pr-10">
+            <div class="w-screen max-w-md bg-white shadow-2xl flex flex-col justify-between">
+                <div class="p-6 bg-luxury-brownDark text-white flex items-center justify-between border-b border-luxury-gold/30">
+                    <div class="flex items-center gap-3">
+                        <i class="fas fa-heart text-luxury-roseGold text-xl"></i>
+                        <h3 class="text-lg font-bold">قائمة المفضلة</h3>
+                    </div>
+                    <button onclick="toggleWishlistModal()" class="text-gray-300 hover:text-white p-2">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+                <div id="wishlist-items" class="flex-1 overflow-y-auto p-6 space-y-4 divide-y divide-gray-100">
+                    <!-- Wishlist Dynamic Items -->
+                </div>
+                <div class="p-6 bg-luxury-50 border-t border-luxury-200 text-center">
+                    <button onclick="toggleWishlistModal()" class="w-full py-3 bg-luxury-brownDark text-luxury-gold font-bold rounded-xl text-sm">العودة للتسوق</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick View Product Modal -->
+    <div id="quick-view-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 hidden">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeQuickView()"></div>
+        <div class="bg-white rounded-3xl shadow-2xl max-w-2xl w-full overflow-hidden relative z-10 grid grid-cols-1 md:grid-cols-2">
+            <div class="h-64 md:h-full relative">
+                <img id="qv-image" src="" alt="المنتج" class="w-full h-full object-cover">
+                <span id="qv-badge" class="absolute top-4 right-4 bg-luxury-brownDark text-luxury-gold text-xs font-bold px-3 py-1 rounded-full border border-luxury-gold/40"></span>
+            </div>
+            <div class="p-6 sm:p-8 space-y-4 flex flex-col justify-between">
+                <div class="space-y-3">
+                    <div class="flex justify-between items-start">
+                        <span id="qv-category" class="text-xs font-bold text-luxury-roseGold uppercase bg-luxury-100 px-2.5 py-1 rounded-md"></span>
+                        <div class="text-luxury-gold text-sm flex items-center gap-1 font-bold">
+                            <i class="fas fa-star"></i> <span id="qv-rating"></span>
+                        </div>
+                    </div>
+                    <h3 id="qv-title" class="text-2xl font-black text-luxury-brownDark"></h3>
+                    <p id="qv-description" class="text-gray-600 text-xs sm:text-sm leading-relaxed"></p>
+                    <div class="text-2xl font-black text-luxury-600 pt-2"><span id="qv-price"></span> ج.م</div>
+                </div>
+                <div class="flex gap-3 pt-4">
+                    <button id="qv-add-btn" class="flex-1 py-3 bg-luxury-brownDark hover:bg-luxury-brownWarm text-luxury-gold font-bold rounded-xl transition shadow flex items-center justify-center gap-2 text-sm">
+                        <i class="fas fa-shopping-bag"></i> أضف للسلة
+                    </button>
+                    <button onclick="closeQuickView()" class="px-4 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold rounded-xl transition text-sm">إغلاق</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Application Core Logic -->
+    <script>
+        // Expanded Catalog (28 Diverse Sweets with Accurate Dessert Images)
+        const products = [
+            // البسبوسة والكنافة
+            {
+                id: 1,
+                name: "بسبوسة بالقشطة واللوز",
+                category: "كنافة وبسبوسة",
+                price: 160,
+                rating: 4.9,
+                badge: "الأكثر مبيعاً 🔥",
+                image: "https://kitchen.sayidaty.net/uploads/small/1d/1d0f4338590b636119230e3516fa83fd_w750_h500.jpg",
+                description: "بسبوسة مصرية دايبة بالسمن البلدي الطبيعي، محشوة بالقشطة البلدي الغنية ومزينة باللوز المحمص."
+            },
+            {
+                id: 2,
+                name: "بسبوسة بالمكسرات المشكلة",
+                category: "كنافة وبسبوسة",
+                price: 175,
+                rating: 4.8,
+                badge: "فاخر جداً",
+                image: "https://img.youm7.com/ArticleImgs/2021/4/20/60336-%D8%B7%D8%B1%D9%8A%D9%82%D8%A9-%D8%B9%D9%85%D9%84-%D8%A7%D9%84%D8%A8%D8%B3%D8%A8%D9%88%D8%B3%D8%A9-%D8%A8%D8%A7%D9%84%D9%85%D9%87%D9%84%D8%A8%D9%8A%D8%A9-(1).jpg",
+                description: "بسبوسة مكرملة غنية بالبندق والفستق واللوز مع قطر العسل الخفيف."
+            },
+            {
+                id: 3,
+                name: "كنافة نابلسية بالجبنة العكاوية",
+                category: "كنافة وبسبوسة",
+                price: 190,
+                rating: 5.0,
+                badge: "ساخنة يومياً",
+                image: "https://eljornal.com/wp-content/uploads/2025/01/IMG_9124.jpeg",
+                description: "كنافة برتقالية مقرمشة محشوة بالجبن العكاوي الذائب ومسقية بقطر الفستق."
+            },
+            {
+                id: 4,
+                name: "كنافة بالمانجو الطازجة",
+                category: "كنافة وبسبوسة",
+                price: 210,
+                rating: 4.9,
+                badge: "موسمي مميز 🥭",
+                image: "https://i.ytimg.com/vi/3y0ezhuGDzU/maxresdefault.jpg",
+                description: "طبقات الكنافة المقرمشة مع الكريمة الغنية وقطع المانجو العويسي الطازجة."
+            },
+            {
+                id: 5,
+                name: "كنافة باللوتس والكريمة",
+                category: "كنافة وبسبوسة",
+                price: 220,
+                rating: 4.8,
+                badge: "عصري",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1_qGJxz7C5J9zsf1bcmyLm6DyVmEf04H2iJrVy2nisM-L7BO_qLgPomI&s=10",
+                description: "كنافة محشوة بزبدة اللوتس الشهية وقطع بسكويت اللوتس المقرمش."
+            },
+
+            // حلويات شرقية
+            {
+                id: 6,
+                name: "بقلاوة بالفستق الحلبي",
+                category: "شرقي",
+                price: 240,
+                rating: 5.0,
+                badge: "ملك الشرقي 👑",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_Ujvcr3lCg0zVLsLk-FQOUSC1cgkT8GXBUekRcooc_Q&s=10",
+                description: "رقائق الجلاش الرقيقة الهشة المحشوة بأجود أنواع الفستق الحلبي والعسل."
+            },
+            {
+                id: 7,
+                name: "أم علي بالمكسرات والقشطة",
+                category: "شرقي",
+                price: 110,
+                rating: 4.9,
+                badge: "طازج وسخين",
+                image: "https://cdn.elbaladtv.net/wp-content/uploads/2023/03/%D8%B7%D8%B1%D9%8A%D9%82%D8%A9-%D8%B9%D9%85%D9%84-%D8%A3%D9%85-%D8%B9%D9%84%D9%8A.jpg",
+                description: "طاجن أم علي الرائع من الرقاق والمحمص بالحليب الطازج والقشطة البلدي والمكسرات."
+            },
+            {
+                id: 8,
+                name: "هريسة الإسكندراني بالمكسرات",
+                category: "شرقي",
+                price: 150,
+                rating: 4.7,
+                badge: "أصلي",
+                image: "https://media.altreeq.com/img/23/08/01/430457.jpg",
+                description: "الهريسة الإسكندراني الثقيلة والمكرملة بالسمن البلدي وجوز الهند المكرمل."
+            },
+            {
+                id: 9,
+                name: "رموش الست الذهبية",
+                category: "شرقي",
+                price: 130,
+                rating: 4.6,
+                badge: "تذوب بالفم",
+                image: "https://img.youm7.com/ArticleImgs/2024/1/16/64534-%D8%B1%D9%85%D9%88%D8%B4-%D8%A7%D9%84%D8%B3%D8%AA-%D8%AD%D9%84%D9%88%D9%8A%D8%A7%D8%AA.jpg",
+                description: "قطع رموش الست الناعمة والمشربة بالشربات الخفيف ولون ذهبي جذاب."
+            },
+            {
+                id: 10,
+                name: "زنود الست بالقشطة",
+                category: "شرقي",
+                price: 165,
+                rating: 4.8,
+                badge: "مقرمش",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQteYx9jMXU210LUIK4nnCQUTly5bFB48_Jwdshf9nM3Q&s=10",
+                description: "أصابع العجين المقرمشة والمحشوة بالقشطة الطازجة ومرشوشة بالفستق."
+            },
+            {
+                id: 11,
+                name: "بلح الشام بالقشطة والفستق",
+                category: "شرقي",
+                price: 120,
+                rating: 4.7,
+                badge: "شبيها بالعسل",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3dAQHJCSg_QkH3GC2zqhHPAedXkeyI_Bgg6g-crd6rA&s=10",
+                description: "بلح الشام المفتوح والمحشو بالقشطة البلدي ومرشوش بالفستق."
+            },
+            {
+                id: 12,
+                name: "مشكل حلويات شرقية فاخرة",
+                category: "شرقي",
+                price: 230,
+                rating: 4.9,
+                badge: "مشكل السعادة",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6CSjs4nwtccZVygYntDJUYmXp75y4zl2HMJ2f-P52fGAADV-MtCcX5oHc&s=10",
+                description: "تشكيلة تضم البسبوسة والكنافة والبقلاوة ورموش الست والرموش."
+            },
+
+            // جاتوه وتورتات
+            {
+                id: 13,
+                name: "جاتوه شوكولاتة بلجيكية",
+                category: "جاتوه وتورت",
+                price: 35,
+                rating: 4.9,
+                badge: "قطعة غنية",
+                image: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&q=80&w=600",
+                description: "قطعة جاتوه هشة محشوة بكريمة الشوكولاتة البلجيكية الداكنة."
+            },
+            {
+                id: 14,
+                name: "جاتوه ريد فيلفيت الملكي",
+                category: "جاتوه وتورت",
+                price: 38,
+                rating: 4.8,
+                badge: "جذاب 💖",
+                image: "https://images.unsplash.com/photo-1616541823729-00fe0aacd32c?auto=format&fit=crop&q=80&w=600",
+                description: "كيك الريد فيلفيت المخملي الأحمر مع طبقات الجبن الكريمي الفاخر."
+            },
+            {
+                id: 15,
+                name: "جاتوه ميلفي بالمربى والكريمة",
+                category: "جاتوه وتورت",
+                price: 32,
+                rating: 4.7,
+                badge: "مقرمش فرنسي",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTM1BJhoS7yiDui-FYC-i3OcYuq1207JNMgTLd_cRQYiA&s=10",
+                description: "طبقات رقائق الميلفي الفرنسية الهشة مع السكر الناعم والمربى."
+            },
+            {
+                id: 16,
+                name: "تورتة الفواكه الاستوائية",
+                category: "جاتوه وتورت",
+                price: 340,
+                rating: 4.9,
+                badge: "للمناسبات 🎉",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfzUI_1To44sSiSrlNbm8dcIj7TQzzyAfL0aGRYfPeXdRPAFh_Sjl7Jyg&s=10",
+                description: "تورتة كريمة الفانيليا الفاخرة المزدانة بقطع الكيوي والفراولة والخوخ والأناناس."
+            },
+            {
+                id: 17,
+                name: "تورتة فورسيزونز المشكلة",
+                category: "جاتوه وتورت",
+                price: 380,
+                rating: 5.0,
+                badge: "4 نكهات بتورتة",
+                image: "https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&q=80&w=600",
+                description: "مقسمة إلى 4 أرباع: ربع شوكولاتة، ربع لوتس، ربع فواكه، وربع مكسرات."
+            },
+
+            // حلويات غربية
+            {
+                id: 18,
+                name: "تشيز كيك التوت الأزرق (Blueberry)",
+                category: "غربي",
+                price: 270,
+                rating: 4.9,
+                badge: "بارد ومنعش",
+                image: "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&q=80&w=600",
+                description: "تشيز كيك نيويورك الأصلي مع صوص التوت الأزرق الطازج."
+            },
+            {
+                id: 19,
+                name: "تيراميسو إيطالي فاخر",
+                category: "غربي",
+                price: 180,
+                rating: 4.8,
+                badge: "نكهة القهوة ☕",
+                image: "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?auto=format&fit=crop&q=80&w=600",
+                description: "حلوى التيراميسو الإيطالية بالمسكاربوني وقهوة الإسبريسو والكاكاو."
+            },
+            {
+                id: 20,
+                name: "براونيز الشوكولاتة والجوز",
+                category: "غربي",
+                price: 140,
+                rating: 4.7,
+                badge: "دسم وجذاب",
+                image: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&q=80&w=600",
+                description: "مربعات براونيز شوكولاتة غنية بالعين جمل والدسم."
+            },
+            {
+                id: 21,
+                name: "كوكيز الشوكولاتة البلجيكية (12 قطعة)",
+                category: "غربي",
+                price: 110,
+                rating: 4.8,
+                badge: "مقرمش",
+                image: "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&q=80&w=600",
+                description: "علبة كوكيز خفيفة ومحشوة بقطع الشوكولاتة الداكنة والبيضاء."
+            },
+            {
+                id: 22,
+                name: "دوناتس مشكلة ملونة (6 قطع)",
+                category: "غربي",
+                price: 120,
+                rating: 4.6,
+                badge: "الأطفال يحبونها",
+                image: "https://images.unsplash.com/photo-1514517521153-1be72277b32f?auto=format&fit=crop&q=80&w=600",
+                description: "قطع دونات هشة مغطاة بالشوكولاتة والكراميل والفرمسيل."
+            },
+            {
+                id: 23,
+                name: "كب كيك الفانيليا والشوكولاتة",
+                category: "غربي",
+                price: 95,
+                rating: 4.5,
+                badge: "خفيف",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnVsmzxVX625Cn4IY-3WjgbGmtWHvD5eBKXhow1NhCMQ&s=10",
+                description: "علبة 4 قطع كب كيك مزينة بكريمة الزبدة والرشات الملونة."
+            },
+
+            // نواعم وكحك
+            {
+                id: 24,
+                name: "كحك العيد بالملبن والعين جمل",
+                category: "نواعم",
+                price: 170,
+                rating: 4.9,
+                badge: "موسمي",
+                image: "https://images.unsplash.com/photo-1517433670267-08bbd4be890f?auto=format&fit=crop&q=80&w=600",
+                description: "كحك ناعم ودايب في الفم بالسمن البلدي والملبن الفاخر."
+            },
+            {
+                id: 25,
+                name: "بيتي فور فاخر بالمكسرات والشوكولاتة",
+                category: "نواعم",
+                price: 185,
+                rating: 4.8,
+                badge: "فاخر",
+                image: "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&q=80&w=600",
+                description: "تشكيلة بيتي فور مغطاة بالشوكولاتة البيضاء والداكنة والمكسرات."
+            },
+            {
+                id: 26,
+                name: "غريبة بالفستق الحلبي",
+                category: "نواعم",
+                price: 160,
+                rating: 4.7,
+                badge: "تذوب باللسان",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMKzN6yHfcy-xLxIC06kOjSG6QA2guHZvIPLN21Kq7-EC8ISGtCJ-z4ww&s=10",
+                description: "غريبة ناعمة جداً بالسمن الطبيعي ومزدانة بحبة فستق."
+            },
+
+            // دايت ولايت
+            {
+                id: 27,
+                name: "بسبوسة دايت بسكر دايت وشوفان 🍃",
+                category: "دايت",
+                price: 165,
+                rating: 4.6,
+                badge: "دايت / لايت",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfF0aukqrJ9xIUwwhhmVh47zCwdii7CvZeQkjVPnK3fA&s=10",
+                description: "بسبوسة خفيفة السعرات مصنوعة بدقيق الشوفان وسكر الاستيفيا الطبيعي."
+            },
+            {
+                id: 28,
+                name: "كنافة لايت خفيفة الدسم 🍃",
+                category: "دايت",
+                price: 180,
+                rating: 4.5,
+                badge: "دايت / لايت",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIGwlaHULz_uX_6UuUZfm5J-VCi3Ec1UDyYq5mRYrp6Q&s=10",
+                description: "كنافة خفيفة السمن محشوة بجبن لايت وقليل من الشربات الخفيف."
+            }
+        ];
+
+        // State Variables
+        let cart = [];
+        let wishlist = [];
+        let currentCategory = 'all';
+        let appliedDiscount = 0;
+        let selectedBoxWeight = 1;
+        let selectedBoxItems = [];
+
+        // Application Startup
+        window.addEventListener('DOMContentLoaded', () => {
+            renderProducts(products);
+            initCustomBoxPickers();
+            calculatePartySweet();
+            updateCartBadge();
+            updateWishlistBadge();
+        });
+
+        // Render Catalogue
+        function renderProducts(itemsToRender) {
+            const grid = document.getElementById('products-grid');
+            const emptyState = document.getElementById('empty-state');
+            grid.innerHTML = '';
+
+            if (itemsToRender.length === 0) {
+                emptyState.classList.remove('hidden');
+                return;
+            } else {
+                emptyState.classList.add('hidden');
+            }
+
+            itemsToRender.forEach(product => {
+                const isWishlisted = wishlist.some(item => item.id === product.id);
+                const card = document.createElement('div');
+                card.className = 'bg-white rounded-3xl shadow-md hover:shadow-2xl transition duration-300 border border-luxury-200 overflow-hidden flex flex-col justify-between group';
+                card.innerHTML = `
+                    <div class="relative h-52 overflow-hidden bg-gray-100 cursor-pointer" onclick="openQuickView(${product.id})">
+                        <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" onerror="this.src='https://placehold.co/600x400/fbece5/2C1810?text=حلويات+فاخرة'">
+                        <span class="absolute top-3 right-3 bg-luxury-brownDark/90 backdrop-blur-sm text-luxury-gold text-xs font-black px-3 py-1 rounded-full border border-luxury-gold/30">${product.badge}</span>
+                        <button onclick="event.stopPropagation(); toggleWishlist(${product.id})" class="absolute top-3 left-3 w-9 h-9 bg-white/90 rounded-full flex items-center justify-center text-luxury-roseGold shadow hover:scale-110 transition">
+                            <i class="${isWishlisted ? 'fas' : 'far'} fa-heart text-base"></i>
+                        </button>
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+                        <div>
+                            <div class="flex justify-between items-center text-xs mb-1">
+                                <span class="bg-luxury-100 text-luxury-700 px-2.5 py-0.5 rounded-md font-extrabold">${product.category}</span>
+                                <div class="flex items-center gap-1 font-bold text-luxury-gold">
+                                    <i class="fas fa-star text-xs"></i> <span>${product.rating}</span>
+                                </div>
+                            </div>
+                            <h3 onclick="openQuickView(${product.id})" class="text-base font-black text-luxury-brownDark hover:text-luxury-600 transition cursor-pointer">${product.name}</h3>
+                            <p class="text-gray-500 text-xs line-clamp-2 mt-1 leading-relaxed">${product.description}</p>
+                        </div>
+                        <div class="flex items-center justify-between pt-3 border-t border-gray-100">
+                            <div>
+                                <span class="text-[10px] text-gray-400 block">السعر</span>
+                                <span class="text-lg font-black text-luxury-600">${product.price} <small class="text-xs font-bold">ج.م</small></span>
+                            </div>
+                            <button onclick="addToCart(${product.id})" class="px-3.5 py-2 bg-luxury-brownDark hover:bg-luxury-brownWarm text-luxury-gold font-bold text-xs rounded-xl transition shadow flex items-center gap-1.5">
+                                <i class="fas fa-shopping-bag"></i> أضف
+                            </button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Filtering and Sorting
+        function setCategory(category) {
+            currentCategory = category;
+            document.querySelectorAll('.cat-btn').forEach(btn => {
+                btn.className = "cat-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-luxury-100 hover:bg-luxury-200 text-luxury-brownDark transition";
+            });
+            event.target.className = "cat-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-black bg-luxury-brownDark text-luxury-gold shadow-md transition";
+            filterAndRenderProducts();
+        }
+
+        function filterAndRenderProducts() {
+            const query = document.getElementById('search-input').value.toLowerCase().trim();
+            const sortVal = document.getElementById('sort-select').value;
+
+            let filtered = products.filter(product => {
+                const matchesCat = currentCategory === 'all' || product.category === currentCategory;
+                const matchesSearch = product.name.toLowerCase().includes(query) || product.description.toLowerCase().includes(query);
+                return matchesCat && matchesSearch;
+            });
+
+            if (sortVal === 'price-asc') filtered.sort((a, b) => a.price - b.price);
+            else if (sortVal === 'price-desc') filtered.sort((a, b) => b.price - a.price);
+            else if (sortVal === 'rating') filtered.sort((a, b) => b.rating - a.rating);
+
+            renderProducts(filtered);
+        }
+
+        function resetFilters() {
+            document.getElementById('search-input').value = '';
+            document.getElementById('sort-select').value = 'default';
+            setCategory('all');
+        }
+
+        // Custom Box Builder Tool Logic
+        function initCustomBoxPickers() {
+            const container = document.getElementById('box-pickers');
+            container.innerHTML = '';
+
+            products.slice(0, 15).forEach(prod => {
+                const itemBtn = document.createElement('button');
+                itemBtn.className = "p-3 bg-white/10 hover:bg-white/20 rounded-xl text-right text-xs font-bold border border-white/10 transition flex items-center justify-between";
+                itemBtn.innerHTML = `
+                    <span class="truncate">${prod.name}</span>
+                    <i class="fas fa-plus text-luxury-gold ml-1"></i>
+                `;
+                itemBtn.onclick = () => addItemToCustomBox(prod);
+                container.appendChild(itemBtn);
+            });
+        }
+
+        function setBoxWeight(weight) {
+            selectedBoxWeight = weight;
+            document.querySelectorAll('.weight-btn').forEach(btn => {
+                btn.className = "weight-btn p-4 rounded-2xl bg-white/10 text-white font-bold text-center border-2 border-white/20 hover:border-luxury-gold transition";
+            });
+            event.target.className = "weight-btn p-4 rounded-2xl bg-luxury-gold text-luxury-brownDark font-black text-center shadow border-2 border-luxury-gold transition";
+            document.getElementById('box-weight-label').innerText = weight + ' كجم';
+            updateBoxSummary();
+        }
+
+        function addItemToCustomBox(product) {
+            if (selectedBoxItems.length >= 6) {
+                showToast('يمكنك اختيار حتى 6 أصناف كحد أقصى للبوكس المخصص', 'fas fa-info-circle text-yellow-400');
+                return;
+            }
+            selectedBoxItems.push(product);
+            updateBoxSummary();
+            showToast(`تمت إضافة ${product.name} إلى البوكس المخصص`);
+        }
+
+        function removeItemFromCustomBox(index) {
+            selectedBoxItems.splice(index, 1);
+            updateBoxSummary();
+        }
+
+        function updateBoxSummary() {
+            const container = document.getElementById('box-selected-list');
+            container.innerHTML = '';
+
+            if (selectedBoxItems.length === 0) {
+                container.innerHTML = '<p class="text-gray-400 text-center py-8 font-semibold">لم تقم بإضافة أصناف بعد، انقر على الأصناف لإضافتها للبوكس.</p>';
+                document.getElementById('box-calculated-price').innerText = '0 ج.م';
+                return;
+            }
+
+            let avgPrice = 0;
+            selectedBoxItems.forEach((item, idx) => {
+                avgPrice += item.price;
+                const div = document.createElement('div');
+                div.className = "flex items-center justify-between p-2.5 bg-gray-50 rounded-xl font-bold text-xs";
+                div.innerHTML = `
+                    <span>${item.name}</span>
+                    <button onclick="removeItemFromCustomBox(${idx})" class="text-red-500 hover:text-red-700"><i class="fas fa-times-circle"></i></button>
+                `;
+                container.appendChild(div);
+            });
+
+            const calculatedTotal = Math.round((avgPrice / selectedBoxItems.length) * selectedBoxWeight);
+            document.getElementById('box-calculated-price').innerText = calculatedTotal + ' ج.م';
+        }
+
+        function addCustomBoxToCart() {
+            if (selectedBoxItems.length === 0) {
+                showToast('يرجى اختيار أصناف أولاً لإكمال البوكس المخصص', 'fas fa-exclamation-circle text-red-500');
+                return;
+            }
+
+            const avgPrice = selectedBoxItems.reduce((acc, curr) => acc + curr.price, 0) / selectedBoxItems.length;
+            const totalPrice = Math.round(avgPrice * selectedBoxWeight);
+
+            const boxItem = {
+                id: Date.now(),
+                name: `🎁 بوكس حلويات مخصص (${selectedBoxWeight} كجم - ${selectedBoxItems.length} أصناف)`,
+                price: totalPrice,
+                image: 'https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&q=80&w=600',
+                quantity: 1
+            };
+
+            cart.push(boxItem);
+            updateCartBadge();
+            showToast('تمت إضافة البوكس المخصص إلى سلة مشترياتك بنجاح! 🎉');
+            selectedBoxItems = [];
+            updateBoxSummary();
+        }
+
+        // Event / Party Sweet Calculator
+        function calculatePartySweet() {
+            const guests = parseInt(document.getElementById('guests-range').value);
+            document.getElementById('guests-count-display').innerText = guests + ' فرد';
+
+            const weight = (guests * 0.18).toFixed(1); // 180g per guest
+            let mixDesc = '';
+            let estCost = 0;
+
+            if (guests <= 10) {
+                mixDesc = 'كيلو بسبوسة + كيلو كنافة مشكلة';
+                estCost = 330;
+            } else if (guests <= 25) {
+                mixDesc = '1.5 ك بسبوسة + 1.5 ك كنافة + 10 قطع جاتوه';
+                estCost = 650;
+            } else {
+                mixDesc = '3 ك شرقي مشكل (بسبوسة/كنافة) + تورتة كبيرة + 24 قطعة جاتوه';
+                estCost = 1250;
+            }
+
+            document.getElementById('rec-weight').innerText = `${weight} كيلو مشكل`;
+            document.getElementById('rec-mix').innerText = mixDesc;
+            document.getElementById('rec-cost').innerText = `${estCost} ج.م`;
+        }
+
+        function addPartyRecommendationToCart() {
+            const guests = document.getElementById('guests-range').value;
+            const cost = parseInt(document.getElementById('rec-cost').innerText);
+
+            cart.push({
+                id: Date.now(),
+                name: `🎉 باقة مناسبة لعزومة (${guests} فرد)`,
+                price: cost,
+                image: 'https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&q=80&w=600',
+                quantity: 1
+            });
+
+            updateCartBadge();
+            showToast('تمت إضافة التوصية المناسبة لعزومتك إلى السلة بنجاح!');
+        }
+
+        // Cart Actions
+        function toggleCartModal() {
+            document.getElementById('cart-modal').classList.toggle('hidden');
+            renderCartItems();
+        }
+
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            const existing = cart.find(item => item.id === productId);
+
+            if (existing) existing.quantity += 1;
+            else cart.push({ ...product, quantity: 1 });
+
+            updateCartBadge();
+            showToast(`تمت إضافة "${product.name}" إلى السلة`);
+        }
+
+        function addOfferBundle(name, price, image) {
+            cart.push({ id: Date.now(), name, price, image, quantity: 1 });
+            updateCartBadge();
+            showToast(`تمت إضافة "${name}" إلى السلة بنجاح!`);
+        }
+
+        function updateCartQuantity(id, change) {
+            const item = cart.find(i => i.id === id);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity <= 0) cart = cart.filter(i => i.id !== id);
+            }
+            updateCartBadge();
+            renderCartItems();
+        }
+
+        function removeFromCart(id) {
+            cart = cart.filter(i => i.id !== id);
+            updateCartBadge();
+            renderCartItems();
+            showToast('تم حذف المنتج من السلة', 'fas fa-trash text-red-500');
+        }
+
+        function updateCartBadge() {
+            const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const badge = document.getElementById('cart-badge');
+            badge.innerText = totalCount;
+            if (totalCount > 0) badge.classList.remove('hidden');
+            else badge.classList.add('hidden');
+        }
+
+        function renderCartItems() {
+            const container = document.getElementById('cart-items');
+            container.innerHTML = '';
+
+            if (cart.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-12 space-y-3">
+                        <div class="text-4xl text-gray-300"><i class="fas fa-shopping-basket"></i></div>
+                        <p class="text-gray-500 font-bold text-sm">سلة المشتريات فارغة حالياً</p>
+                    </div>
+                `;
+                document.getElementById('cart-subtotal').innerText = '0 ج.م';
+                document.getElementById('cart-total').innerText = '35 ج.م';
+                return;
+            }
+
+            let subtotal = 0;
+            cart.forEach(item => {
+                subtotal += item.price * item.quantity;
+                const div = document.createElement('div');
+                div.className = 'flex items-center gap-4 py-4';
+                div.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover rounded-xl border border-luxury-200">
+                    <div class="flex-1">
+                        <h4 class="font-bold text-luxury-brownDark text-xs sm:text-sm">${item.name}</h4>
+                        <span class="text-luxury-600 font-black text-xs sm:text-sm">${item.price} ج.م</span>
+                        <div class="flex items-center gap-3 mt-2">
+                            <button onclick="updateCartQuantity(${item.id}, -1)" class="w-6 h-6 bg-gray-100 hover:bg-gray-200 rounded-lg flex items-center justify-center text-xs font-bold">-</button>
+                            <span class="text-xs sm:text-sm font-bold">${item.quantity}</span>
+                            <button onclick="updateCartQuantity(${item.id}, 1)" class="w-6 h-6 bg-gray-100 hover:bg-gray-200 rounded-lg flex items-center justify-center text-xs font-bold">+</button>
+                        </div>
+                    </div>
+                    <button onclick="removeFromCart(${item.id})" class="text-gray-400 hover:text-red-500 p-2"><i class="fas fa-trash-alt"></i></button>
+                `;
+                container.appendChild(div);
+            });
+
+            const shipping = subtotal > 350 || subtotal === 0 ? 0 : 35;
+            const discountVal = subtotal * appliedDiscount;
+            const finalTotal = subtotal - discountVal + (subtotal > 0 ? shipping : 0);
+
+            document.getElementById('cart-subtotal').innerText = subtotal + ' ج.م';
+            document.getElementById('shipping-cost').innerText = shipping === 0 ? 'مجاني ✨' : shipping + ' ج.م';
+
+            if (appliedDiscount > 0) {
+                document.getElementById('discount-row').classList.remove('hidden');
+                document.getElementById('cart-discount').innerText = '-' + discountVal.toFixed(0) + ' ج.م';
+            } else {
+                document.getElementById('discount-row').classList.add('hidden');
+            }
+
+            document.getElementById('cart-total').innerText = finalTotal.toFixed(0) + ' ج.م';
+        }
+
+        function applyPromoCode() {
+            const code = document.getElementById('promo-input').value.trim().toUpperCase();
+            if (code === 'SWEET15') {
+                appliedDiscount = 0.15;
+                showToast('تم تطبيق خصم 15% بنجاح!');
+                renderCartItems();
+            } else {
+                showToast('كود الخصم غير صحيح', 'fas fa-exclamation-circle text-red-500');
+            }
+        }
+
+        function checkout() {
+            if (cart.length === 0) {
+                showToast('السلة فارغة، أضف حلويات أولاً', 'fas fa-exclamation-circle text-red-500');
+                return;
+            }
+            showToast('تم استلام طلبك بنجاح! جاري التجهيز والتوصيل فوراً 🚚');
+            cart = [];
+            updateCartBadge();
+            toggleCartModal();
+        }
+
+        // Wishlist Modal
+        function toggleWishlistModal() {
+            document.getElementById('wishlist-modal').classList.toggle('hidden');
+            renderWishlistItems();
+        }
+
+        function toggleWishlist(productId) {
+            const product = products.find(p => p.id === productId);
+            const index = wishlist.findIndex(item => item.id === productId);
+
+            if (index > -1) {
+                wishlist.splice(index, 1);
+                showToast(`تم إزالة "${product.name}" من المفضلة`);
+            } else {
+                wishlist.push(product);
+                showToast(`تمت إضافة "${product.name}" للمفضلة ❤️`);
+            }
+
+            updateWishlistBadge();
+            renderProducts(products);
+        }
+
+        function updateWishlistBadge() {
+            const badge = document.getElementById('wishlist-badge');
+            badge.innerText = wishlist.length;
+            if (wishlist.length > 0) badge.classList.remove('hidden');
+            else badge.classList.add('hidden');
+        }
+
+        function renderWishlistItems() {
+            const container = document.getElementById('wishlist-items');
+            container.innerHTML = '';
+
+            if (wishlist.length === 0) {
+                container.innerHTML = '<p class="text-gray-400 text-center py-8 font-semibold">قائمة المفضلة فارغة حالياً</p>';
+                return;
+            }
+
+            wishlist.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'flex items-center gap-4 py-4';
+                div.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover rounded-xl border border-luxury-200">
+                    <div class="flex-1">
+                        <h4 class="font-bold text-luxury-brownDark text-xs sm:text-sm">${item.name}</h4>
+                        <span class="text-luxury-600 font-black text-xs sm:text-sm">${item.price} ج.م</span>
+                    </div>
+                    <button onclick="addToCart(${item.id}); toggleWishlist(${item.id})" class="p-2 bg-luxury-brownDark text-luxury-gold rounded-xl text-xs"><i class="fas fa-shopping-bag"></i></button>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        // Quick View Modal
+        function openQuickView(productId) {
+            const product = products.find(p => p.id === productId);
+            document.getElementById('qv-image').src = product.image;
+            document.getElementById('qv-badge').innerText = product.badge;
+            document.getElementById('qv-category').innerText = product.category;
+            document.getElementById('qv-rating').innerText = product.rating;
+            document.getElementById('qv-title').innerText = product.name;
+            document.getElementById('qv-description').innerText = product.description;
+            document.getElementById('qv-price').innerText = product.price;
+            document.getElementById('qv-add-btn').onclick = function() {
+                addToCart(product.id);
+                closeQuickView();
+            };
+            document.getElementById('quick-view-modal').classList.remove('hidden');
+        }
+
+        function closeQuickView() {
+            document.getElementById('quick-view-modal').classList.add('hidden');
+        }
+
+        // Toast Helper
+        function showToast(message, iconClass = 'fas fa-check-circle text-luxury-gold text-2xl') {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-message').innerText = message;
+            document.getElementById('toast-icon').className = iconClass;
+
+            toast.classList.remove('translate-y-24', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-24', 'opacity-0');
+            }, 3500);
+        }
+
+        // Mobile Nav Toggle
+        function toggleMobileMenu() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        }
+    </script>
+</body>
+</html>
